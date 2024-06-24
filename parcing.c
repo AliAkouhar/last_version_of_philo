@@ -6,7 +6,7 @@
 /*   By: ali-akouhar <ali-akouhar@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 13:05:36 by ali-akouhar       #+#    #+#             */
-/*   Updated: 2024/06/13 13:05:40 by ali-akouhar      ###   ########.fr       */
+/*   Updated: 2024/06/24 19:08:26 by ali-akouhar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static int	check_sign(char *str)
     return (0);
 }
 
-int parcing(int ac, char **av, t_data *data)
+int parcing(int ac, char **av)
 {
     int i;
 

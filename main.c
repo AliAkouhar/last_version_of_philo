@@ -6,7 +6,7 @@
 /*   By: ali-akouhar <ali-akouhar@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 12:53:46 by ali-akouhar       #+#    #+#             */
-/*   Updated: 2024/06/24 15:49:39 by ali-akouhar      ###   ########.fr       */
+/*   Updated: 2024/06/24 19:40:02 by ali-akouhar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ int main(int ac, char **av)
 {
     t_data  data;
     
-    if (parcing(ac, av, &data))
+    if (parcing(ac, av))
         return (1);
-    if (ft_init(ac, av, &data))
+    if (ft_init(av, &data))
         return (1);
     return (0);
 }

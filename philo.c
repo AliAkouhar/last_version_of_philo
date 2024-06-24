@@ -6,13 +6,13 @@
 /*   By: ali-akouhar <ali-akouhar@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 13:16:29 by ali-akouhar       #+#    #+#             */
-/*   Updated: 2024/06/24 15:50:30 by ali-akouhar      ###   ########.fr       */
+/*   Updated: 2024/06/24 19:41:19 by ali-akouhar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void    ft_init_args(int ac, char **av, t_data *data)
+void    ft_init_args(char **av, t_data *data)
 {
     data->death_flag = 1;
     data->meal_finish = 0;
@@ -77,15 +77,16 @@ int ft_alloc(t_data *data)
     return (0);
 }
 
-int     ft_init(int ac, char **av, t_data *data)
+int     ft_init(char **av, t_data *data)
 {
-    ft_init_args(ac, av, data);
+    
+    ft_init_args(av, data);
     if (ft_alloc(data))
         return (1);
-    ft_init_philos(data);
+    ft_init_philo(data);
     if (ft_create_philos(data))
         return (1);
     if (ft_join(data))
         return (1);
-    
+    return (0);
 }

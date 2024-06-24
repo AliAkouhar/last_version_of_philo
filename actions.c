@@ -6,7 +6,7 @@
 /*   By: ali-akouhar <ali-akouhar@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 17:05:58 by ali-akouhar       #+#    #+#             */
-/*   Updated: 2024/06/24 14:30:33 by ali-akouhar      ###   ########.fr       */
+/*   Updated: 2024/06/24 19:34:34 by ali-akouhar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 int    take_a_fork(t_philo *philo)
 {
-    pthread_mutex_lock(&philo->left_fork);
+    pthread_mutex_lock(philo->left_fork);
     ft_printf("is taking a left fork\n", philo);
     if (philo->data->n_philo == 1)
     {
         usleep(philo->data->t_die);
         set_status(philo, DIED);
         philo->data->death_flag = 0; //is death
-        pthread_mutex_unlock(&philo->left_fork);
+        pthread_mutex_unlock(philo->left_fork);
         return (1);
     }
-    pthread_mutex_unlock(&philo->left_fork);
-    pthread_mutex_lock(&philo->right_fork);
+    pthread_mutex_unlock(philo->left_fork);
+    pthread_mutex_lock(philo->right_fork);
     ft_printf("taking a right fork", philo);
-    pthread_mutex_unlock(&philo->right_fork);
+    pthread_mutex_unlock(philo->right_fork);
     return (0);
 }
 
@@ -58,7 +58,7 @@ void ft_sleeping(t_philo *philo)
 void    ft_thinking(t_philo *philo)
 {
     pthread_mutex_lock(&philo->think_lock);
-    set_lock(philo, THINKING);
+    set_status(philo, THINKING);
     ft_printf("is thinking\n", philo);
     pthread_mutex_unlock(&philo->think_lock);
 }

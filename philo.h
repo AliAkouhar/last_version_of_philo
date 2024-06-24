@@ -6,7 +6,7 @@
 /*   By: ali-akouhar <ali-akouhar@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 12:46:41 by ali-akouhar       #+#    #+#             */
-/*   Updated: 2024/06/24 16:24:17 by ali-akouhar      ###   ########.fr       */
+/*   Updated: 2024/06/24 19:23:17 by ali-akouhar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <pthread.h>
 #include <unistd.h>
 #include <string.h>
-//#include "utils/utils.h"
+#include "utils/utils.h"
 
 typedef enum e_status{
     EATING,
@@ -70,9 +70,9 @@ typedef struct s_data{
     pthread_t           death_monitore;
 }   t_data;
 
-int     parcing(int ac, char **av, t_data *data);
+int     parcing(int ac, char **av);
 void    *routine(void *d);
-int     ft_init(int ac, char **av, t_data *data);
+int     ft_init(char **av, t_data *data);
 void    *death_func(void *p);
 int     ft_create_philos(t_data *data);
 void    *death_func(void *p);
@@ -82,4 +82,15 @@ void    ft_init_philo(t_data *data);
 void    *check_death(void *p);
 void    *check_meals(void *p);
 int    take_a_fork(t_philo *philo);
+int is_death(t_philo *philo);
+void     ft_create_forks(t_data *data);
+t_status    get_status(t_philo *philo);
+void    ft_thinking(t_philo *philo);
+void ft_sleeping(t_philo *philo);
+int ft_eating(t_philo *philo);
+int    take_a_fork(t_philo *philo);
+void    ft_printf(char *str, t_philo *philo);
+void    set_status(t_philo *philo, t_status status);
+
+
 #endif

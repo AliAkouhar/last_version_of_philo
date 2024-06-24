@@ -6,7 +6,7 @@
 /*   By: ali-akouhar <ali-akouhar@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:43:58 by ali-akouhar       #+#    #+#             */
-/*   Updated: 2024/06/24 17:55:32 by ali-akouhar      ###   ########.fr       */
+/*   Updated: 2024/06/24 19:32:40 by ali-akouhar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int is_death(t_philo *philo)
     {
         set_status(philo, DIED);
         pthread_mutex_unlock(&philo->check_lock);
-        return (1)
+        return (1);
     }
     pthread_mutex_unlock(&philo->check_lock);
     return (0);
@@ -36,7 +36,7 @@ void    go_kill_all(t_data *data)
 
     i = -1;
     while (++i < data->n_philo)
-        set_satus(&data->philo[i], DIED);
+        set_status(&data->philo[i], DIED);
 }
 
 void    *check_death(void *p)
@@ -73,7 +73,7 @@ void    *check_meals(void   *p)
     count = 0;
     while (++i < data->n_philo && data->death_flag)
     {
-        if (data->philo[i].meals_counter = data->num_meals)
+        if (data->philo[i].meals_counter == data->num_meals)
             count++;
         if (count == data->n_philo)
         {
