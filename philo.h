@@ -6,7 +6,7 @@
 /*   By: ali-akouhar <ali-akouhar@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 12:46:41 by ali-akouhar       #+#    #+#             */
-/*   Updated: 2024/06/24 19:23:17 by ali-akouhar      ###   ########.fr       */
+/*   Updated: 2024/06/25 18:29:30 by ali-akouhar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_philo{
     int     meals_counter;
     int     eat_flag; //1 is eathimg/ 2 is sleeping/ 3 is thinking/ 4 is dieng
     unsigned long long      start;
-    unsigned long long      expected_time;
+    unsigned long long      last_meal;
     pthread_mutex_t *left_fork;
     pthread_mutex_t *right_fork;
     pthread_mutex_t eat_lock;
@@ -74,6 +74,7 @@ int     parcing(int ac, char **av);
 void    *routine(void *d);
 int     ft_init(char **av, t_data *data);
 void    *death_func(void *p);
+int     ft_create_forks(t_data *data);
 int     ft_create_philos(t_data *data);
 void    *death_func(void *p);
 void    go_to_eat(t_philo *philo);
@@ -83,7 +84,6 @@ void    *check_death(void *p);
 void    *check_meals(void *p);
 int    take_a_fork(t_philo *philo);
 int is_death(t_philo *philo);
-void     ft_create_forks(t_data *data);
 t_status    get_status(t_philo *philo);
 void    ft_thinking(t_philo *philo);
 void ft_sleeping(t_philo *philo);

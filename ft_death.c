@@ -6,7 +6,7 @@
 /*   By: ali-akouhar <ali-akouhar@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:43:58 by ali-akouhar       #+#    #+#             */
-/*   Updated: 2024/06/24 19:32:40 by ali-akouhar      ###   ########.fr       */
+/*   Updated: 2024/06/25 18:28:05 by ali-akouhar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ int is_death(t_philo *philo)
         pthread_mutex_unlock(&philo->check_lock);
         return (1);
     }
-    else if (philo->status != EATING && (get_time() - philo->expected_time) >= philo->data->t_die)
+    else if (philo->status != EATING && (get_time() - philo->last_meal) >= philo->data->t_die)
     {
+        // printf("time to die %llu\n", get_time() - philo->expected_time);
+        // printf("time to die %llu\n", philo->expected_time);
         set_status(philo, DIED);
         pthread_mutex_unlock(&philo->check_lock);
         return (1);
@@ -52,6 +54,7 @@ void    *check_death(void *p)
         {
             if (is_death(&data->philo[i]))
             {
+                
                 ft_printf("is died\n", &data->philo[i]);
                 go_kill_all(data);
                 data->death_flag = 0;

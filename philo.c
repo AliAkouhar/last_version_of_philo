@@ -6,7 +6,7 @@
 /*   By: ali-akouhar <ali-akouhar@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 13:16:29 by ali-akouhar       #+#    #+#             */
-/*   Updated: 2024/06/24 19:41:19 by ali-akouhar      ###   ########.fr       */
+/*   Updated: 2024/06/25 16:13:30 by ali-akouhar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ int     ft_init(char **av, t_data *data)
     
     ft_init_args(av, data);
     if (ft_alloc(data))
+        return (1);
+    if (ft_create_forks(data))
         return (1);
     ft_init_philo(data);
     if (ft_create_philos(data))
