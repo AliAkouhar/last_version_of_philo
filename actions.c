@@ -6,7 +6,7 @@
 /*   By: ali-akouhar <ali-akouhar@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 17:05:58 by ali-akouhar       #+#    #+#             */
-/*   Updated: 2024/06/25 18:29:03 by ali-akouhar      ###   ########.fr       */
+/*   Updated: 2024/06/26 15:45:33 by ali-akouhar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ int    take_a_fork(t_philo *philo)
         pthread_mutex_unlock(philo->left_fork);
         return (1);
     }
-    pthread_mutex_unlock(philo->left_fork);
+    //pthread_mutex_unlock(philo->left_fork);
     pthread_mutex_lock(philo->right_fork);
     ft_printf("taking a right fork\n", philo);
-    pthread_mutex_unlock(philo->right_fork);
+    //pthread_mutex_unlock(philo->right_fork);
     return (0);
 }
 
@@ -39,9 +39,14 @@ int ft_eating(t_philo *philo)
     set_status(philo, EATING);
     ft_printf("is eating\n", philo);
     if (philo->data->num_meals != -1)
+    {
+        // printf("hi\n");
         philo->meals_counter++;
+    }
     usleep(philo->data->t_eat);
-    philo->last_meal = get_time();
+    philo->expected_time = get_time() + philo->data->t_die;
+    pthread_mutex_unlock(philo->left_fork);
+    pthread_mutex_unlock(philo->right_fork);
     pthread_mutex_unlock(&philo->eat_lock);
     return (0);
 }

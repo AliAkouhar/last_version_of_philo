@@ -6,11 +6,21 @@
 /*   By: ali-akouhar <ali-akouhar@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:43:58 by ali-akouhar       #+#    #+#             */
-/*   Updated: 2024/06/25 18:28:05 by ali-akouhar      ###   ########.fr       */
+/*   Updated: 2024/06/26 15:54:21 by ali-akouhar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+int     check_all(t_data *data)
+{
+    while (1337)
+    {
+        if (data->death_flag == 0)
+            return (1);
+    }
+    return (0);
+}
 
 int is_death(t_philo *philo)
 {
@@ -20,10 +30,10 @@ int is_death(t_philo *philo)
         pthread_mutex_unlock(&philo->check_lock);
         return (1);
     }
-    else if (philo->status != EATING && (get_time() - philo->last_meal) >= philo->data->t_die)
+    else if (philo->status != EATING && (get_time()  == philo->expected_time))
     {
-        // printf("time to die %llu\n", get_time() - philo->expected_time);
-        // printf("time to die %llu\n", philo->expected_time);
+        // printf("time to die %llu\n", get_time() - philo->last_meal);
+        // printf("time to die %llu\n", philo->data->t_die);
         set_status(philo, DIED);
         pthread_mutex_unlock(&philo->check_lock);
         return (1);
@@ -80,6 +90,7 @@ void    *check_meals(void   *p)
             count++;
         if (count == data->n_philo)
         {
+            printf("compliting meals\n");
             go_kill_all(data);
             data->death_flag = 0;
             break ;
