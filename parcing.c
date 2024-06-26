@@ -6,7 +6,7 @@
 /*   By: ali-akouhar <ali-akouhar@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 13:05:36 by ali-akouhar       #+#    #+#             */
-/*   Updated: 2024/06/24 19:08:26 by ali-akouhar      ###   ########.fr       */
+/*   Updated: 2024/06/26 18:05:45 by ali-akouhar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,19 @@ static int check_digit(char *str)
 static int	check_sign(char *str)
 {
 	int	i;
-	int	mince;
 	int	plus;
 
 	i = 0;
-	mince = 0;
 	plus = 0;
 	while (str[i])
 	{
 		if (str[i] == '-' || str[i] == '+')
 		{
 			if (str[i] == '-')
-				mince++;
+				return (printf("enter a positive arguments\n"));
 			if (str[i] == '+')
 				plus++;
-			if (str[i + 1] == '\0' || i != 0 || mince > 1 || plus > 1)
+			if (str[i + 1] == '\0' || i != 0 || plus > 1)
 				return (1);
 		}
 		i++;

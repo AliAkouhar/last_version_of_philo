@@ -6,7 +6,7 @@
 /*   By: ali-akouhar <ali-akouhar@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 17:57:42 by ali-akouhar       #+#    #+#             */
-/*   Updated: 2024/06/25 16:58:05 by ali-akouhar      ###   ########.fr       */
+/*   Updated: 2024/06/26 18:36:59 by ali-akouhar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int     ft_create_forks(t_data *data)
 }
 
 void    ft_init_philo(t_data *data)
-{
+{ 
     int i;
 
     i = -1;
@@ -41,8 +41,8 @@ void    ft_init_philo(t_data *data)
         data->philo[i].data = data;
         data->philo[i].id = i + 1;
         data->philo[i].meals_counter = 0;
-        data->philo->left_fork = &data->forks[i];
-        data->philo->right_fork = &data->forks[(i + 1) % data->n_philo];
+        //data->philo->left_fork = &data->forks[i];
+        //data->philo->right_fork = &data->forks[(i + 1) % data->n_philo];
         data->philo[i].status = NTHG;
         pthread_mutex_init(&data->philo[i].time, NULL);
         pthread_mutex_init(&data->philo[i].time_lock, NULL);

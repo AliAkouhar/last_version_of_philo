@@ -6,13 +6,13 @@
 /*   By: ali-akouhar <ali-akouhar@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:43:58 by ali-akouhar       #+#    #+#             */
-/*   Updated: 2024/06/26 15:54:21 by ali-akouhar      ###   ########.fr       */
+/*   Updated: 2024/06/26 18:43:34 by ali-akouhar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int     check_all(t_data *data)
+/* int     check_all(t_data *data)
 {
     while (1337)
     {
@@ -20,7 +20,7 @@ int     check_all(t_data *data)
             return (1);
     }
     return (0);
-}
+} */
 
 int is_death(t_philo *philo)
 {
@@ -32,6 +32,8 @@ int is_death(t_philo *philo)
     }
     else if (philo->status != EATING && (get_time()  == philo->expected_time))
     {
+        printf("%llu ------------ex %llu\n", get_time(), philo->expected_time - get_time());
+        printf("is maat\n");
         // printf("time to die %llu\n", get_time() - philo->last_meal);
         // printf("time to die %llu\n", philo->data->t_die);
         set_status(philo, DIED);
@@ -86,7 +88,7 @@ void    *check_meals(void   *p)
     count = 0;
     while (++i < data->n_philo && data->death_flag)
     {
-        if (data->philo[i].meals_counter == data->num_meals)
+        if (data->philo[i].meals_counter == (long)data->num_meals)
             count++;
         if (count == data->n_philo)
         {
