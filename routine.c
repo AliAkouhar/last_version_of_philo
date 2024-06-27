@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ali-akouhar <ali-akouhar@student.42.fr>    +#+  +:+       +#+        */
+/*   By: tiima <tiima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 17:10:56 by ali-akouhar       #+#    #+#             */
-/*   Updated: 2024/06/27 17:24:22 by ali-akouhar      ###   ########.fr       */
+/*   Updated: 2024/06/27 16:59:27 by tiima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void    *routine(void *p)
     pthread_mutex_unlock(&philo->time);
     philo = (t_philo *)p;
     if (philo->id % 2 == 0)
-        usleep(philo->data->t_eat - 20);
+        ft_usleep((philo->data->t_eat - 20));
     while (philo->data->death_flag && get_status(philo) != DIED)
     {
         if (get_status(philo) == DIED)

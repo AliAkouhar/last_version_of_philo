@@ -6,7 +6,7 @@
 /*   By: ali-akouhar <ali-akouhar@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 17:05:58 by ali-akouhar       #+#    #+#             */
-/*   Updated: 2024/06/27 17:25:04 by ali-akouhar      ###   ########.fr       */
+/*   Updated: 2024/06/27 18:26:15 by ali-akouhar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int    take_a_fork(t_philo *philo)
     if (philo->data->n_philo == 1)
     {
         ft_usleep(philo->data->t_die);
-        ft_printf("is died\n", philo);
         set_status(philo, DIED);
         philo->data->death_flag = 0; //is death
+        ft_printf("is died\n", philo);
         pthread_mutex_unlock(philo->left_fork);
         return (1);
     }
@@ -38,12 +38,11 @@ int ft_eating(t_philo *philo)
         return (1);
     pthread_mutex_lock(&philo->eat_lock);
     set_status(philo, EATING);
-    
-    ft_printf("is eating\n", philo);
     if (philo->data->num_meals != -1)
         philo->meals_counter++;
+    philo->last_meal = get_time();
+    ft_printf("is eating\n", philo);
     ft_usleep(philo->data->t_eat);
-    philo->last_meal = get_time() ;
     pthread_mutex_unlock(philo->left_fork);
     pthread_mutex_unlock(philo->right_fork);
     pthread_mutex_unlock(&philo->eat_lock);
