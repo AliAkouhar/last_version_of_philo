@@ -6,7 +6,7 @@
 /*   By: ali-akouhar <ali-akouhar@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 17:10:56 by ali-akouhar       #+#    #+#             */
-/*   Updated: 2024/06/27 16:18:36 by ali-akouhar      ###   ########.fr       */
+/*   Updated: 2024/06/27 17:24:22 by ali-akouhar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,15 @@ void    *routine(void *p)
         usleep(philo->data->t_eat - 20);
     while (philo->data->death_flag && get_status(philo) != DIED)
     {
-        // if (get_status(philo) == DIED)
-        //     break ;
+        if (get_status(philo) == DIED)
+            break ;
         if (ft_eating(philo))
             return ((void *)1);
-        // if (get_status(philo) == DIED)
-        //     break ;
+        if (get_status(philo) == DIED)
+            break ;
         ft_sleeping(philo);
-        // if (get_status(philo) == DIED)
-        //     break ;
+        if (get_status(philo) == DIED)
+            break ;
         ft_thinking(philo);
     }
     return (NULL);

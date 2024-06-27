@@ -6,7 +6,7 @@
 /*   By: ali-akouhar <ali-akouhar@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 17:05:58 by ali-akouhar       #+#    #+#             */
-/*   Updated: 2024/06/27 16:20:07 by ali-akouhar      ###   ########.fr       */
+/*   Updated: 2024/06/27 17:25:04 by ali-akouhar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ int    take_a_fork(t_philo *philo)
     ft_printf("is taking a left fork\n", philo);
     if (philo->data->n_philo == 1)
     {
-        usleep(philo->data->t_die);
+        ft_usleep(philo->data->t_die);
+        ft_printf("is died\n", philo);
         set_status(philo, DIED);
         philo->data->death_flag = 0; //is death
         pthread_mutex_unlock(philo->left_fork);
@@ -41,7 +42,7 @@ int ft_eating(t_philo *philo)
     ft_printf("is eating\n", philo);
     if (philo->data->num_meals != -1)
         philo->meals_counter++;
-    usleep(philo->data->t_eat);
+    ft_usleep(philo->data->t_eat);
     philo->last_meal = get_time() ;
     pthread_mutex_unlock(philo->left_fork);
     pthread_mutex_unlock(philo->right_fork);
@@ -54,7 +55,7 @@ void ft_sleeping(t_philo *philo)
     pthread_mutex_lock(&philo->sleep_lock);
     set_status(philo, SLEEPING);
     ft_printf("is sleeping\n", philo);
-    usleep(philo->data->t_sleep);
+    ft_usleep(philo->data->t_sleep);
     pthread_mutex_unlock(&philo->sleep_lock);
 }
 

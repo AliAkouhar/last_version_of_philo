@@ -6,7 +6,7 @@
 /*   By: ali-akouhar <ali-akouhar@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:43:58 by ali-akouhar       #+#    #+#             */
-/*   Updated: 2024/06/27 16:42:47 by ali-akouhar      ###   ########.fr       */
+/*   Updated: 2024/06/27 17:18:42 by ali-akouhar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int is_death(t_philo *philo)
         pthread_mutex_unlock(&philo->check_lock);
         return (1);
     }
-    else if (philo->status != EATING && (get_time() - philo->last_meal >= philo->data->t_die))
+    else if (get_status(philo) != EATING && (get_time() - philo->last_meal >= philo->data->t_die))
     {
         //printf("%llu ------------ex %llu\n", get_time(), philo->expected_time - get_time());
         //printf("is maat\n");
@@ -100,7 +100,7 @@ void    *check_death(void *p)
         i++;
         if (i == data->n_philo)
             i = 0;
-        usleep(1000);
+        ft_usleep(1000);
     }    
     return (NULL);
 }
@@ -130,7 +130,7 @@ void    *check_meals(void   *p)
             i = -1;
             count = 0;
         }
-        usleep(1000);
+        ft_usleep(1000);
     }
     return (NULL);
 }
