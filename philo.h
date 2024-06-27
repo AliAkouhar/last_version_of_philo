@@ -6,7 +6,7 @@
 /*   By: ali-akouhar <ali-akouhar@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 12:46:41 by ali-akouhar       #+#    #+#             */
-/*   Updated: 2024/06/26 15:40:54 by ali-akouhar      ###   ########.fr       */
+/*   Updated: 2024/06/27 16:21:36 by ali-akouhar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_philo{
     int     meals_counter;
     int     eat_flag; //1 is eathimg/ 2 is sleeping/ 3 is thinking/ 4 is dieng
     unsigned long long      start;
-    unsigned long long      expected_time;
+    unsigned long long      last_meal;
     pthread_mutex_t *left_fork;
     pthread_mutex_t *right_fork;
     pthread_mutex_t eat_lock;
@@ -91,6 +91,6 @@ int ft_eating(t_philo *philo);
 int    take_a_fork(t_philo *philo);
 void    ft_printf(char *str, t_philo *philo);
 void    set_status(t_philo *philo, t_status status);
-int check_all(t_data *data);
+//int     check_all(t_data *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ali-akouhar <ali-akouhar@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 13:16:29 by ali-akouhar       #+#    #+#             */
-/*   Updated: 2024/06/26 18:13:54 by ali-akouhar      ###   ########.fr       */
+/*   Updated: 2024/06/27 15:47:25 by ali-akouhar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ int ft_create_philos(t_data *data)
             if (pthread_create(&data->meals_monitore, NULL, check_meals, data))
                 return (1);   
     }
-    if (check_all(data))
-        return (1);
+    /* x */
     return (0);
 }
 

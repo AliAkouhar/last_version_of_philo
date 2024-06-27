@@ -6,7 +6,7 @@
 /*   By: ali-akouhar <ali-akouhar@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:43:58 by ali-akouhar       #+#    #+#             */
-/*   Updated: 2024/06/26 18:43:34 by ali-akouhar      ###   ########.fr       */
+/*   Updated: 2024/06/27 16:42:47 by ali-akouhar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,19 @@ int is_death(t_philo *philo)
     pthread_mutex_lock(&philo->check_lock);
     if (philo->status == DIED)
     {
+        philo->data->death_flag = 0;
         pthread_mutex_unlock(&philo->check_lock);
         return (1);
     }
-    else if (philo->status != EATING && (get_time()  == philo->expected_time))
+    else if (philo->status != EATING && (get_time() - philo->last_meal >= philo->data->t_die))
     {
-        printf("%llu ------------ex %llu\n", get_time(), philo->expected_time - get_time());
-        printf("is maat\n");
+        //printf("%llu ------------ex %llu\n", get_time(), philo->expected_time - get_time());
+        //printf("is maat\n");
         // printf("time to die %llu\n", get_time() - philo->last_meal);
         // printf("time to die %llu\n", philo->data->t_die);
         set_status(philo, DIED);
+        philo->data->death_flag = 0;
+        //go_kill_all(philo->data);
         pthread_mutex_unlock(&philo->check_lock);
         return (1);
     }
@@ -49,11 +52,12 @@ void    go_kill_all(t_data *data)
     int i;
 
     i = -1;
+    data->death_flag = 0;
     while (++i < data->n_philo)
         set_status(&data->philo[i], DIED);
 }
 
-void    *check_death(void *p)
+/* void    *check_death(void *p)
 {
     t_data  *data;
     int     i;
@@ -74,6 +78,30 @@ void    *check_death(void *p)
             }
         }
     }
+    return (NULL);
+} */
+
+void    *check_death(void *p)
+{
+    t_data  *data;
+    int     i;
+
+    data = (t_data *)p;
+    i = 0;
+    while (i < data->n_philo && data->n_philo != 1)
+    {
+        if (is_death(&data->philo[i]))
+        {
+            ft_printf("is died\n", &data->philo[i]);
+            go_kill_all(data);
+            data->death_flag = 0;
+            break ;  
+        }
+        i++;
+        if (i == data->n_philo)
+            i = 0;
+        usleep(1000);
+    }    
     return (NULL);
 }
 

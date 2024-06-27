@@ -6,7 +6,7 @@
 /*   By: ali-akouhar <ali-akouhar@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 17:05:58 by ali-akouhar       #+#    #+#             */
-/*   Updated: 2024/06/26 15:45:33 by ali-akouhar      ###   ########.fr       */
+/*   Updated: 2024/06/27 16:20:07 by ali-akouhar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,12 @@ int ft_eating(t_philo *philo)
         return (1);
     pthread_mutex_lock(&philo->eat_lock);
     set_status(philo, EATING);
+    
     ft_printf("is eating\n", philo);
     if (philo->data->num_meals != -1)
-    {
-        // printf("hi\n");
         philo->meals_counter++;
-    }
     usleep(philo->data->t_eat);
-    philo->expected_time = get_time() + philo->data->t_die;
+    philo->last_meal = get_time() ;
     pthread_mutex_unlock(philo->left_fork);
     pthread_mutex_unlock(philo->right_fork);
     pthread_mutex_unlock(&philo->eat_lock);
