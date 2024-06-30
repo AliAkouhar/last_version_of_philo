@@ -6,7 +6,7 @@
 /*   By: aakouhar <aakouhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 21:09:18 by ali-akouhar       #+#    #+#             */
-/*   Updated: 2024/06/30 15:21:59 by aakouhar         ###   ########.fr       */
+/*   Updated: 2024/06/30 18:33:00 by aakouhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void    ft_printf(char *str, t_philo *philo)
     if (get_finish(philo->data) == 1)
         return ;
     pthread_mutex_lock(&philo->data->write_lock);
-    printf(" ---> %llu   %i %s",(get_time() - philo->data->time), philo->id, str);
+    if (!get_finish(philo->data) && get_value(philo->data))
+    printf("%llu   %i %s",(get_time() - philo->data->time), philo->id, str);
     pthread_mutex_unlock(&philo->data->write_lock);
 }

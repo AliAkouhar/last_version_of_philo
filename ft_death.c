@@ -6,7 +6,7 @@
 /*   By: aakouhar <aakouhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:43:58 by ali-akouhar       #+#    #+#             */
-/*   Updated: 2024/06/30 15:19:10 by aakouhar         ###   ########.fr       */
+/*   Updated: 2024/06/30 18:32:53 by aakouhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void    *check_meals(void   *p)
     data = (t_data *)p;
     i = 0;
     count = 0;
-    while (i < data->n_philo)
+    while (i < data->n_philo && get_value(data))
     {
         pthread_mutex_lock(&data->eat_lock);
         if (data->philo[i].meals_counter >= (long)data->num_meals)
@@ -94,7 +94,6 @@ void    *check_meals(void   *p)
         pthread_mutex_unlock(&data->eat_lock);    
         if (count == data->n_philo)
         {
-            printf("compliting meals\n");
             set_finish(data, 1);
             go_kill_all(data);
             break ;

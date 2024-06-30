@@ -6,7 +6,7 @@
 /*   By: aakouhar <aakouhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 17:57:42 by ali-akouhar       #+#    #+#             */
-/*   Updated: 2024/06/30 15:13:26 by aakouhar         ###   ########.fr       */
+/*   Updated: 2024/06/30 18:31:27 by aakouhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void    ft_init_philo(t_data *data)
     pthread_mutex_init(&data->eat_lock, NULL);
     pthread_mutex_init(&data->time_lock, NULL);
     pthread_mutex_init(&data->dimo, NULL);
-    data->finish = 0;
+    set_finish(data, 0);
     while (++i < data->n_philo)
     {
         data->philo[i].data = data;
