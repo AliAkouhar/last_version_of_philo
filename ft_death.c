@@ -6,7 +6,7 @@
 /*   By: aakouhar <aakouhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:43:58 by ali-akouhar       #+#    #+#             */
-/*   Updated: 2024/06/30 11:37:33 by aakouhar         ###   ########.fr       */
+/*   Updated: 2024/06/30 15:19:10 by aakouhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void    go_kill_all(t_data *data)
     int i;
 
     i = -1;
-    // data->death_flag = 0;
+    set_value(data, 0);
     while (++i < data->n_philo)
     {
         // if (pthread_mutex_lock(data->philo[i].left_fork))
@@ -66,7 +66,6 @@ void    *check_death(void *p)
         if (is_death(&data->philo[i]))
         {
             ft_printf("died\n", &data->philo[i]);
-            set_value(data, 0);
             go_kill_all(data);
             break ;  
         }
@@ -96,8 +95,8 @@ void    *check_meals(void   *p)
         if (count == data->n_philo)
         {
             printf("compliting meals\n");
-            // go_kill_all(data);
-            set_value(data, 0);
+            set_finish(data, 1);
+            go_kill_all(data);
             break ;
         }
         i++;

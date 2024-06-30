@@ -6,7 +6,7 @@
 /*   By: aakouhar <aakouhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 17:57:42 by ali-akouhar       #+#    #+#             */
-/*   Updated: 2024/06/30 11:23:26 by aakouhar         ###   ########.fr       */
+/*   Updated: 2024/06/30 15:13:26 by aakouhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,11 @@ void    ft_init_philo(t_data *data)
     i = -1;
     pthread_mutex_init(&data->status_lock, NULL); //to get or set status
     pthread_mutex_init(&data->write_lock, NULL); //printf
-    pthread_mutex_init(&data->death_lock, NULL); //for death_flag
+    pthread_mutex_init(&data->finish_lock, NULL); //for death_flag
     pthread_mutex_init(&data->eat_lock, NULL);
     pthread_mutex_init(&data->time_lock, NULL);
     pthread_mutex_init(&data->dimo, NULL);
+    data->finish = 0;
     while (++i < data->n_philo)
     {
         data->philo[i].data = data;

@@ -6,7 +6,7 @@
 /*   By: aakouhar <aakouhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 12:46:41 by ali-akouhar       #+#    #+#             */
-/*   Updated: 2024/06/30 11:23:00 by aakouhar         ###   ########.fr       */
+/*   Updated: 2024/06/30 16:06:53 by aakouhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ typedef struct s_data{
     pthread_mutex_t status_lock;
     pthread_mutex_t death_lock;
     pthread_mutex_t time_lock;
+    pthread_mutex_t finish_lock;
+    pthread_mutex_t fi_lock;
     pthread_mutex_t     forks[201];
     unsigned long long                t_eat;
     unsigned long long                t_die;
@@ -58,6 +60,7 @@ typedef struct s_data{
     unsigned long long  time;
     int                 death_flag;
     int                 n_philo;
+    int                 finish;
     int                 num_meals;
     pthread_t           meals_monitore;
     pthread_t           death_monitore;
@@ -89,5 +92,7 @@ int     check_all(t_data *data);
 void ft_free_all(t_data *data);
 int get_value(t_data *data);
 void    set_value(t_data *data, int i);
+int    get_finish(t_data *data);
+void    set_finish(t_data *data, int i);
 
 #endif
