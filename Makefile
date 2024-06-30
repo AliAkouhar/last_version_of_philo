@@ -1,11 +1,11 @@
 CC = cc
 NAME = philo
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g3  #-fsanitize=thread
 
 SRC = main.c parcing.c philo.c philo2.c
 SRC += routine.c get_set.c ft_death.c actions.c
-SRC += utils/ft_atol.c utils/time.c 
+SRC += utils/ft_atol.c utils/time.c  ft_free.c
 
 OBJ = $(SRC:.c=.o)
 

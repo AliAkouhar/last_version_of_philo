@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ali-akouhar <ali-akouhar@student.42.fr>    +#+  +:+       +#+        */
+/*   By: aakouhar <aakouhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 12:46:41 by ali-akouhar       #+#    #+#             */
-/*   Updated: 2024/06/27 16:21:36 by ali-akouhar      ###   ########.fr       */
+/*   Updated: 2024/06/30 11:23:00 by aakouhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,35 +37,28 @@ typedef struct s_philo{
     unsigned long long      last_meal;
     pthread_mutex_t *left_fork;
     pthread_mutex_t *right_fork;
-    pthread_mutex_t eat_lock;
-    pthread_mutex_t sleep_lock;
-    pthread_mutex_t think_lock;
-    pthread_mutex_t time_lock;
-    pthread_mutex_t time;
     pthread_mutex_t message;
-    pthread_mutex_t set_status_lock;
-    pthread_mutex_t get_status_lock;
-    pthread_mutex_t write_lock;
-    pthread_mutex_t check_lock;
     struct s_data  *data;
     t_status    status;
 
 }   t_philo;
 
 typedef struct s_data{
-    t_philo             *philo;
-    pthread_mutex_t     meal_lock;
-    pthread_mutex_t     *forks;
-    pthread_mutex_t     death_lock;
-    pthread_mutex_t     finish_lock;
+    t_philo             philo[201];
+    pthread_mutex_t eat_lock;
+    pthread_mutex_t dimo;
+    pthread_mutex_t write_lock;
+    pthread_mutex_t status_lock;
+    pthread_mutex_t death_lock;
+    pthread_mutex_t time_lock;
+    pthread_mutex_t     forks[201];
     unsigned long long                t_eat;
     unsigned long long                t_die;
     unsigned long long                t_sleep;
+    unsigned long long  time;
     int                 death_flag;
     int                 n_philo;
     int                 num_meals;
-    int                 *arr_time;
-    int                 meal_finish;
     pthread_t           meals_monitore;
     pthread_t           death_monitore;
 }   t_data;
@@ -85,12 +78,16 @@ void    *check_meals(void *p);
 int    take_a_fork(t_philo *philo);
 int is_death(t_philo *philo);
 t_status    get_status(t_philo *philo);
-void    ft_thinking(t_philo *philo);
-void ft_sleeping(t_philo *philo);
+int    ft_thinking(t_philo *philo);
+int ft_sleeping(t_philo *philo);
 int ft_eating(t_philo *philo);
 int    take_a_fork(t_philo *philo);
 void    ft_printf(char *str, t_philo *philo);
 void    set_status(t_philo *philo, t_status status);
-//int     check_all(t_data *data);
+void    go_kill_all(t_data *data);
+int     check_all(t_data *data);
+void ft_free_all(t_data *data);
+int get_value(t_data *data);
+void    set_value(t_data *data, int i);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ali-akouhar <ali-akouhar@student.42.fr>    +#+  +:+       +#+        */
+/*   By: aakouhar <aakouhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 12:53:46 by ali-akouhar       #+#    #+#             */
-/*   Updated: 2024/06/24 19:40:02 by ali-akouhar      ###   ########.fr       */
+/*   Updated: 2024/06/30 09:55:40 by aakouhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int main(int ac, char **av)
         return (1);
     if (ft_init(av, &data))
         return (1);
+    // ft_free_all(&data);
     return (0);
 }
 
