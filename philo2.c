@@ -6,7 +6,7 @@
 /*   By: aakouhar <aakouhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 17:57:42 by ali-akouhar       #+#    #+#             */
-/*   Updated: 2024/06/30 18:31:27 by aakouhar         ###   ########.fr       */
+/*   Updated: 2024/07/27 10:09:32 by aakouhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,20 @@ void    ft_init_philo(t_data *data)
     int i;
 
     i = -1;
-    pthread_mutex_init(&data->status_lock, NULL); //to get or set status
-    pthread_mutex_init(&data->write_lock, NULL); //printf
-    pthread_mutex_init(&data->finish_lock, NULL); //for death_flag
+    pthread_mutex_init(&data->status_lock, NULL);
+    pthread_mutex_init(&data->write_lock, NULL);
+    pthread_mutex_init(&data->finish_lock, NULL);
     pthread_mutex_init(&data->eat_lock, NULL);
     pthread_mutex_init(&data->time_lock, NULL);
     pthread_mutex_init(&data->dimo, NULL);
     set_finish(data, 0);
+    set_value(data, 1);
     while (++i < data->n_philo)
     {
         data->philo[i].data = data;
         data->philo[i].id = i + 1;
         data->philo[i].meals_counter = 0;
         data->philo[i].status = NTHG;
-    // pr//intf("HI\n");   
-        // pthread_mutex_lock(&data->time_lock);
         data->philo[i].last_meal = get_time();
-        // pthread_mutex_unlock(&data->time_lock);
     }
 }
