@@ -6,7 +6,7 @@
 /*   By: aakouhar <aakouhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 12:46:41 by ali-akouhar       #+#    #+#             */
-/*   Updated: 2024/07/27 09:54:25 by aakouhar         ###   ########.fr       */
+/*   Updated: 2024/08/13 11:20:57 by aakouhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ typedef struct s_philo{
     int     id;
     int     meals_counter;
     int     eat_flag; //1 is eathimg/ 2 is sleeping/ 3 is thinking/ 4 is dieng
-    unsigned long long      start;
-    unsigned long long      last_meal;
+    long long      start;
+    long long      last_meal;
     pthread_mutex_t *left_fork;
     pthread_mutex_t *right_fork;
     pthread_mutex_t message;
@@ -54,10 +54,10 @@ typedef struct s_data{
     pthread_mutex_t finish_lock;
     pthread_mutex_t fi_lock;
     pthread_mutex_t     forks[201];
-    unsigned long long                t_eat;
-    unsigned long long                t_die;
-    unsigned long long                t_sleep;
-    unsigned long long  time;
+    long long                t_eat;
+    long long                t_die;
+    long long                t_sleep;
+    long long  time;
     int                 death_flag;
     int                 n_philo;
     int                 finish;

@@ -6,7 +6,7 @@
 /*   By: aakouhar <aakouhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 17:05:58 by ali-akouhar       #+#    #+#             */
-/*   Updated: 2024/06/30 10:10:00 by aakouhar         ###   ########.fr       */
+/*   Updated: 2024/08/13 11:53:49 by aakouhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int ft_sleeping(t_philo *philo)
 int    ft_thinking(t_philo *philo)
 {
     set_status(philo, THINKING);
+    usleep(700);
     if (get_status(philo) == DIED)
         return (1);
     ft_printf("is thinking\n", philo);
